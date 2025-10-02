@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Raiku Tx Fail Simulator 🐉</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f0f1a, #1a1a2e);
+      color: #F5F5F5;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-size: 2.8em;
+      color: #7B5EFF;
+      text-shadow: 0 0 15px rgba(123, 94, 255, 0.8);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .dragon-emoji {
+      font-size: 1.5em;
+      animation: pulse 2s infinite;
+    }
+    p {
+      font-size: 1.2em;
+      color: #D0D0FF;
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 25px;
+      width: 90%;
+      max-width: 550px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease;
+    }
+    .container:hover {
+      transform: translateY(-5px);
+    }
+    input, select {
+      padding: 12px;
+      margin: 12px 0;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      background: #1f1f3a;
+      color: #F5F5F5;
+      transition: all 0.3s ease;
+    }
+    input:focus, select:focus {
+      outline: none;
+      box-shadow: 0 0 12px #7B5EFF;
+    }
+    button {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #7B5EFF, #4CAF50);
+      color: #F5F5F5;
+      font-size: 1.2em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin: 12px;
+    }
+    button:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 20px rgba(123, 94, 255, 0.9);
+    }
+    canvas {
+      max-width: 100%;
+      margin: 25px auto;
+      border-radius: 12px;
+      background: #F5F5F5;
+      padding: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    #meme-result img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin: 15px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+    #meme-result img:hover {
+      transform: scale(1.02);
+    }
+    #meme-result a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #4CAF50;
+      border-radius: 8px;
+      color: #F5F5F5;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+    #meme-result a:hover {
+      background: #388E3C;
+    }
+    .error {
+      color: #FF4D4D;
+      font-size: 0.9em;
+      margin: 5px 0;
+    }
+    footer {
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #A0A0FF;
+    }
+    footer a {
+      color: #7B5EFF;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 2em; }
+      p { font-size: 1em; }
+      .container { padding: 15px; }
+      button { font-size: 1em; padding: 10px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Raiku Tx Fail Simulator <span class="dragon-emoji">🐉</span></h1>
+    <p>Discover how <a href="https://raiku.com" target="_blank">Raiku</a> saves your Solana transactions from congestion fails with 99.9% success!</p>
+    <label>Transaction Volume (tx/sec):</label>
+    <input type="number" id="volume" placeholder="e.g., 100"><br>
+    <p id="error" class="error"></p>
+    <label>Congestion Level:</label>
+    <select id="congestion">
+      <option value="0.2">Low (20% fail)</option>
+      <option value="0.4">Medium (40% fail)</option>
+      <option value="0.6">High (60% fail)</option>
+    </select><br>
+    <button onclick="simulate()">Simulate Fails</button>
+    <p id="result"></p>
+    <canvas id="chart"></canvas>
+    <button onclick="generateMeme()">Generate Raiku Meme</button>
+    <p id="meme-result"></p>
+  </div>
+  <footer>
+    Built for <a href="https://raiku.com" target="_blank">Raiku</a> | Follow <a href="https://x.com/raikucom" target="_blank">@raikucom</a> | Join the <a href="https://discord.com/invite/raikucom" target="_blank">Discord</a>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
