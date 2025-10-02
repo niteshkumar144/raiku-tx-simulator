@@ -46,12 +46,12 @@ function simulate() {
       scales: {
         y: { 
           beginAtZero: true, 
-          grid: { color: 'rgba(255,255,255,0.15)' }, 
-          ticks: { color: '#D0D0FF', font: { size: 12 } }
+          grid: { color: 'rgba(0,0,0,0.1)' }, 
+          ticks: { color: '#1a1a2e' }
         },
         x: { 
           grid: { display: false }, 
-          ticks: { color: '#D0D0FF', font: { size: 12 } }
+          ticks: { color: '#1a1a2e' }
         }
       },
       animation: {
@@ -59,11 +59,11 @@ function simulate() {
         easing: 'easeOutBounce'
       },
       plugins: {
-        legend: { labels: { color: '#F5F5F5', font: { size: 14 } } },
+        legend: { labels: { color: '#1a1a2e', font: { size: 14 } } },
         title: {
           display: true,
           text: 'Raiku vs Solana Transaction Fails',
-          color: '#7B5EFF',
+          color: '#6B48FF',
           font: { size: 16, weight: '600' }
         }
       }
@@ -78,7 +78,7 @@ function generateMeme() {
     '99.9% uptime with Raiku’s magic! 💪 #Raiku'
   ];
   const images = [
-    'https://via.placeholder.com/300x200/7B5EFF/FFF?text=Raiku+Dragon+Saves+Tx',
+    'https://via.placeholder.com/300x200/6B48FF/FFF?text=Raiku+Dragon+Saves+Tx',
     'https://via.placeholder.com/300x200/4CAF50/FFF?text=Raiku+Crushes+Spam',
     'https://via.placeholder.com/300x200/FF4D4D/FFF?text=Raiku+Tx+Hero'
   ];
